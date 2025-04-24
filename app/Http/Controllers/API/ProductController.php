@@ -17,6 +17,14 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
+    public function paginate(Request $request)
+    {
+        $perPage = $request->get('per_page', 20);
+        $products = Product::with('category')->paginate($perPage);
+        return response()->json($products);
+    }
+
+
     /**
      * Store a newly created product.
      */

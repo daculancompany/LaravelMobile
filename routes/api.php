@@ -20,11 +20,12 @@ Route::middleware('auth:api')->group(function () {
     });
 
     Route::apiResource('products', ProductController::class);
+    Route::get('products-paginate', [ProductController::class, 'paginate']);
     Route::get('products/search/{name}', [ProductController::class, 'search']);
 
     // Category Routes
     Route::apiResource('categories', CategoryController::class);
-    Route::get('sample-query', [CategoryController::class, 'sampleQuery']);
+   
 
     // Customer Routes
     Route::apiResource('customers', CustomerController::class);
@@ -38,3 +39,8 @@ Route::middleware('auth:api')->group(function () {
         ->only(['index', 'show', 'update', 'destroy'])
         ->scoped();
 });
+
+Route::get('sample-query', [CategoryController::class, 'sampleQuery']);
+
+Route::get('/test', [CategoryController::class, 'test']);
+
